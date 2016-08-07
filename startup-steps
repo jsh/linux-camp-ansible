@@ -1,0 +1,14 @@
+#!/bin/bash -eu
+
+sudo cat <<__EOF__ > /etc/sudoers.d
+jsh     ALL=(ALL)       NOPASSWD: ALL
+__EOF__
+chmod 440 /etc/sudoers.d
+
+sudo dnf update
+sudo systemctl start openssh-server
+sudo systemctl enable openssh-server
+ssh-keygen
+cp .ssh/id_rsa.pub .ssh/authorized_keys
+chmod 600 $_
+sudo dnf install ansible python2-dnf

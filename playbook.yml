@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: a message
+      debug:
+    - name: touch a file
+      file: name=/tmp/from_ansible state=touch
+    - name: get ansible
+      dnf: name=ansible state=present
+    - name: get openssh-server
+      dnf: name=openssh-server state=present
+    - name: update all packages
+      dnf: name=* state=latest
+    - name: test debugging
+      shell: /usr/bin/uptime
+      register: result
+    - debug: var=result
+
