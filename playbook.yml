@@ -11,6 +11,8 @@
       dnf: name=ansible state=present
     - name: get openssh-server
       dnf: name=openssh-server state=present
+    - name: get vagrant
+      dnf: name=vagrant state=present
     - name: update all packages
       dnf: name=* state=latest
     - name: test debugging
